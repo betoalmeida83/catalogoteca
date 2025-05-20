@@ -15,6 +15,7 @@ public class Vinyl {
     private String artist;
     private String genre;
     private String label;
+    @Column(name = "release_year")
     private Integer releaseYear;
     private String format;
     private String imgUrl;
