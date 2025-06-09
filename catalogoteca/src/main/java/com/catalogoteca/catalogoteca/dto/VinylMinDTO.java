@@ -1,7 +1,8 @@
 package com.catalogoteca.catalogoteca.dto;
 
 import com.catalogoteca.catalogoteca.entities.Vinyl;
-import jakarta.servlet.http.PushBuilder;
+import com.catalogoteca.catalogoteca.projections.VinylMinProjection;
+
 
 public class VinylMinDTO {
 
@@ -19,6 +20,13 @@ public class VinylMinDTO {
         title = entity.getTitle();
         artist = entity.getArtist();
         imgUrl = entity.getImgUrl();
+    }
+
+    public VinylMinDTO(VinylMinProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        artist = projection.getArtist();
+        imgUrl = projection.getImgUrl();
     }
 
     // GETTERS

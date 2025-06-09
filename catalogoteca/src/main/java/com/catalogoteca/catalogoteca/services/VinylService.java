@@ -3,6 +3,7 @@ package com.catalogoteca.catalogoteca.services;
 import com.catalogoteca.catalogoteca.dto.VinylDTO;
 import com.catalogoteca.catalogoteca.dto.VinylMinDTO;
 import com.catalogoteca.catalogoteca.entities.Vinyl;
+import com.catalogoteca.catalogoteca.projections.VinylMinProjection;
 import com.catalogoteca.catalogoteca.repositories.VinylRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,12 @@ public class VinylService {
     @Transactional(readOnly = true)
     public List<VinylMinDTO> findAll() {
         List<Vinyl> result = vinylRepository.findAll();
+        return result.stream().map(x -> new VinylMinDTO(x)).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<VinylMinDTO> findByList(Long listId) {
+        List<VinylMinProjection> result = vinylRepository.searchByList(listId);
         return result.stream().map(x -> new VinylMinDTO(x)).toList();
     }
 }
